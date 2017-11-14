@@ -1,0 +1,48 @@
+<div class="container">
+	<h1>Cadastro de Carros</h1>
+	<form>
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="id">Id</label> <input type="text" -->
+<!-- 				class="form-control" name="id" [(ngModel)]="pessoa.id"  -->
+<!-- 				required> -->
+<!-- 		</div> -->
+		<div class="form-group">
+			<label for="nome">Modelo</label> <input type="text"
+				class="form-control" name="modelo" [(ngModel)]="carro.modelo" 
+				required>
+		</div>
+		<div class="form-group">
+			<label for="cpf">Placa</label> <input type="text"
+				class="form-control" name="placa" [(ngModel)]="carro.placa"
+				required>
+		</div>
+		<button class="btn btn-success" (click)="addCarro()">Cadastrar</button>
+	</form>
+
+	<p></p>
+	<table class="table" border="1">
+		<tr>
+			<th>Modelo</th>
+			<th>Placa</th>
+			<th>Exlcuir</th>
+			<th>Edirar</th>
+		</tr>
+		<tr *ngFor="let carro of carros">
+<!-- 			<td>{{pessoa.id}} </td> -->
+			<td>{{carro.modelo}} </td>
+			<td>{{carro.placa}}</td>
+			<td><button (click)="delCarro(carro)">Excluir</button></td>
+			<td><button>Alterar</button></td>
+		</tr>
+	</table>
+	
+</div>
+
+
+
+
+
+
+
+
+

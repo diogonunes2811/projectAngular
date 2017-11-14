@@ -1,0 +1,51 @@
+<div class="container">
+	<h1>Cadastro de Militar</h1>
+	<form>
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="id">Id</label> <input type="text" -->
+<!-- 				class="form-control" name="id" [(ngModel)]="pessoa.id"  -->
+<!-- 				required> -->
+<!-- 		</div> -->
+		<div class="form-group">
+			<label for="nome">Nome</label> <input type="text"
+				class="form-control" name="nome" [(ngModel)]="militar.nome" 
+				required>
+		</div>
+		<div class="form-group">
+			<label for="cpf">Idade</label> <input type="text"
+				class="form-control" name="cpf" [(ngModel)]="militar.idade"
+				required>
+		</div>
+		<div class="form-group">
+			<label for="nome">Nome de Guerra</label> <input type="text"
+				class="form-control" name="nome" [(ngModel)]="militar.nomedeguerra" 
+				required>
+		</div>
+		<button class="btn btn-success" (click)="addMilitar()">Cadastrar</button>
+	</form>
+
+	<p></p>
+	<table class="table" border="1">
+		<tr>
+			<th>Nome</th>
+			<th>Idade</th>
+			<th>NomedeGuerra</th>
+		</tr>
+		<tr *ngFor="let militar of militares">
+<!-- 			<td>{{pessoa.id}} </td> -->
+			<td>{{militar.nome}} </td>
+			<td>{{militar.idade}}</td>
+			<td>{{militar.nomedeguerra}}</td>
+		</tr>
+	</table>
+	
+</div>
+
+
+
+
+
+
+
+
+
