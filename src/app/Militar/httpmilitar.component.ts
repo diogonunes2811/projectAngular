@@ -30,7 +30,34 @@ export class HttpMilitarComponent {
       error => alert(error),
       () => this.getMilitares()
     );
+  }
 
+  alterMilitar(militar2: Militar) {
+    this.militar = militar2;
+  }
+
+  updateMilitar() {
+    this.httpMilitares.updateMilitar(this.militar).subscribe(
+      data => data,
+      error => alert(error),
+      () => this.getMilitares()
+    );
+
+    this.militar = new Militar;
+  }
+
+  novoMilitar() {
+    this.militar = new Militar;
+  }
+
+  delMilitar(militar2: Militar) {
+    this.httpMilitares.delMilitar(militar2).subscribe(
+      data => data,
+      error => alert(error),
+      () => this.getMilitares()
+    );
+
+    this.militar = new Militar;
 
   }
 

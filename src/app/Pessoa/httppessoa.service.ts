@@ -16,10 +16,14 @@ export class HttpPessoaService {
   }
 
   private extractData(res: Response) {
-    if (res.json()['pessoa'].length > 1) {
-      return res.json()['pessoa'];
-    } else {
-      return res.json()['pessoa'];
+    if (res.json() != null) {
+      if (res.json()['pessoa'].length > 1) {
+        return res.json()['pessoa'];
+      } else {
+        return [res.json().pessoa];
+      }
+    }else {
+      return null;
     }
   }
 
@@ -29,6 +33,25 @@ export class HttpPessoaService {
     const options = new RequestOptions({ headers: headers });
     return this._http.
       post('http://localhost:8080/as/rest/pessoarest',
+      json, options).map(res => res.json());
+  }
+
+  updatePessoa(pessoa: Pessoa): Observable<string> {
+    const json = JSON.stringify(pessoa);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this._http.
+      post('http://localhost:8080/as/rest/pessoarest/updatePessoaRest',
+      json, options).map(res => res.json());
+  }
+
+  delPessoa(pessoa: Pessoa): Observable<string> {
+//    alert(carro.id);
+    const json = JSON.stringify(pessoa);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this._http.
+      post('http://localhost:8080/as/rest/pessoarest/delPessoaRest',
       json, options).map(res => res.json());
   }
 }

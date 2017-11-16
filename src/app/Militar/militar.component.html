@@ -1,27 +1,31 @@
 <div class="container">
 	<h1>Cadastro de Militar</h1>
 	<form>
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="id">Id</label> <input type="text" -->
-<!-- 				class="form-control" name="id" [(ngModel)]="pessoa.id"  -->
-<!-- 				required> -->
-<!-- 		</div> -->
+		<!-- 		<div class="form-group"> -->
+		<!-- 			<label for="id">Id</label> <input type="text" -->
+		<!-- 				class="form-control" name="id" [(ngModel)]="pessoa.id"  -->
+		<!-- 				required> -->
+		<!-- 		</div> -->
 		<div class="form-group">
 			<label for="nome">Nome</label> <input type="text"
-				class="form-control" name="nome" [(ngModel)]="militar.nome" 
-				required>
+				class="form-control" name="nome" [(ngModel)]="militar.nome" required>
 		</div>
 		<div class="form-group">
 			<label for="cpf">Idade</label> <input type="text"
-				class="form-control" name="cpf" [(ngModel)]="militar.idade"
-				required>
+				class="form-control" name="cpf" [(ngModel)]="militar.idade" required>
 		</div>
 		<div class="form-group">
-			<label for="nome">Nome de Guerra</label> <input type="text"
-				class="form-control" name="nome" [(ngModel)]="militar.nomedeguerra" 
+			<label for="nomedeguerra">Nome de Guerra</label> <input type="text"
+				class="form-control" name="nomedeguerra" [(ngModel)]="militar.nomedeguerra"
 				required>
 		</div>
-		<button class="btn btn-success" (click)="addMilitar()">Cadastrar</button>
+		<div *ngIf="militar.id == null">
+			<button class="btn btn-success" (click)="addMilitar()">Cadastrar</button>
+		</div>
+		<div *ngIf="militar.id >= 1">
+			<button class="btn btn-success" (click)="updateMilitar()">Alterar</button>
+			<button class="btn btn-success" (click)="NovoMilitar()">Novo</button>
+		</div>
 	</form>
 
 	<p></p>
@@ -29,16 +33,20 @@
 		<tr>
 			<th>Nome</th>
 			<th>Idade</th>
-			<th>NomedeGuerra</th>
+			<th>Nome de Guerra</th>
+			<th>Excluir</th>
+			<th>Editar</th>
 		</tr>
 		<tr *ngFor="let militar of militares">
-<!-- 			<td>{{pessoa.id}} </td> -->
-			<td>{{militar.nome}} </td>
+			<!-- 			<td>{{pessoa.id}} </td> -->
+			<td>{{militar.nome}}</td>
 			<td>{{militar.idade}}</td>
 			<td>{{militar.nomedeguerra}}</td>
+			<td><button (click)="delMilitar(militar)">Excluir</button></td>
+			<td><button (click)="alterMilitar(militar)">Alterar</button></td>
 		</tr>
 	</table>
-	
+
 </div>
 
 

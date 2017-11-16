@@ -16,10 +16,14 @@ export class HttpMilitarService {
   }
 
   private extractData(res: Response) {
-    if (res.json()['militar'].length > 1) {
-      return res.json()['militar'];
-    } else {
-      return res.json()['militar'];
+    if (res.json() != null) {
+      if (res.json()['militar'].length > 1) {
+        return res.json()['militar'];
+      } else {
+        return [res.json().militar];
+      }
+    }else {
+      return null;
     }
   }
 
@@ -29,6 +33,25 @@ export class HttpMilitarService {
     const options = new RequestOptions({ headers: headers });
     return this._http.
       post('http://localhost:8080/as/rest/militarrest',
+      json, options).map(res => res.json());
+  }
+
+  updateMilitar(militar: Militar): Observable<string> {
+    const json = JSON.stringify(militar);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this._http.
+      post('http://localhost:8080/as/rest/militarrest/updateMilitarRest',
+      json, options).map(res => res.json());
+  }
+
+  delMilitar(militar: Militar): Observable<string> {
+//    alert(carro.id);
+    const json = JSON.stringify(militar);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this._http.
+      post('http://localhost:8080/as/rest/militarrest/delMilitarRest',
       json, options).map(res => res.json());
   }
 }

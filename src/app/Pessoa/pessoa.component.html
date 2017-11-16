@@ -1,22 +1,26 @@
 <div class="container">
 	<h1>Cadastro de Pessoas</h1>
 	<form>
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="id">Id</label> <input type="text" -->
-<!-- 				class="form-control" name="id" [(ngModel)]="pessoa.id"  -->
-<!-- 				required> -->
-<!-- 		</div> -->
+		<!-- 		<div class="form-group"> -->
+		<!-- 			<label for="id">Id</label> <input type="text" -->
+		<!-- 				class="form-control" name="id" [(ngModel)]="pessoa.id"  -->
+		<!-- 				required> -->
+		<!-- 		</div> -->
 		<div class="form-group">
 			<label for="nome">Nome</label> <input type="text"
-				class="form-control" name="nome" [(ngModel)]="pessoa.nome" 
-				required>
+				class="form-control" name="nome" [(ngModel)]="pessoa.nome" required>
 		</div>
 		<div class="form-group">
 			<label for="cpf">Idade</label> <input type="text"
-				class="form-control" name="cpf" [(ngModel)]="pessoa.idade"
-				required>
+				class="form-control" name="cpf" [(ngModel)]="pessoa.idade" required>
 		</div>
-		<button class="btn btn-success" (click)="addPessoa()">Cadastrar</button>
+		<div *ngIf="pessoa.id == null">
+			<button class="btn btn-success" (click)="addPessoa()">Cadastrar</button>
+		</div>
+		<div *ngIf="pessoa.id >= 1">
+			<button class="btn btn-success" (click)="updatePessoa()">Alterar</button>
+			<button class="btn btn-success" (click)="NovoPessoa()">Novo</button>
+		</div>
 	</form>
 
 	<p></p>
@@ -24,14 +28,18 @@
 		<tr>
 			<th>Nome</th>
 			<th>Idade</th>
+			<th>Excluir</th>
+			<th>Editar</th>
 		</tr>
 		<tr *ngFor="let pessoa of pessoas">
-<!-- 			<td>{{pessoa.id}} </td> -->
-			<td>{{pessoa.nome}} </td>
+			<!-- 			<td>{{pessoa.id}} </td> -->
+			<td>{{pessoa.nome}}</td>
 			<td>{{pessoa.idade}}</td>
+			<td><button (click)="delPessoa(pessoa)">Excluir</button></td>
+			<td><button (click)="alterPessoa(pessoa)">Alterar</button></td>
 		</tr>
 	</table>
-	
+
 </div>
 
 

@@ -16,12 +16,14 @@ export class HttpCarroService {
   }
 
   private extractData(res: Response) {
-    if (res.json() == null) {
+    if (res.json() != null) {
       if (res.json()['carro'].length > 1) {
         return res.json()['carro'];
       } else {
-        return res.json()['carro'];
+        return [res.json().carro];
       }
+    }else {
+      return null;
     }
   }
 
@@ -34,8 +36,17 @@ export class HttpCarroService {
       json, options).map(res => res.json());
   }
 
+  updateCarro(carro: Carro): Observable<string> {
+    const json = JSON.stringify(carro);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this._http.
+      post('http://localhost:8080/as/rest/carrorest/updateCarroRest',
+      json, options).map(res => res.json());
+  }
+
   delCarro(carro: Carro): Observable<string> {
-    alert(carro.id);
+//    alert(carro.id);
     const json = JSON.stringify(carro);
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });

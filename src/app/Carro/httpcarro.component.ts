@@ -30,9 +30,26 @@ export class HttpCarroComponent {
       error => alert(error),
       () => this.getCarros()
     );
-
-
   }
+
+  alterCarro(carro2: Carro) {
+    this.carro = carro2;
+  }
+
+  alterarCarro() {
+    this.httpCarros.updateCarro(this.carro).subscribe(
+      data => data,
+      error => alert(error),
+      () => this.getCarros()
+    );
+
+    this.carro = new Carro;
+  }
+
+  novoCarro() {
+    this.carro = new Carro;
+  }
+
   delCarro(carro2: Carro) {
     this.httpCarros.delCarro(carro2).subscribe(
       data => data,
@@ -40,6 +57,7 @@ export class HttpCarroComponent {
       () => this.getCarros()
     );
 
+    this.carro = new Carro;
 
   }
 

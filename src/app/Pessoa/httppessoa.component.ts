@@ -30,9 +30,35 @@ export class HttpPessoaComponent {
       error => alert(error),
       () => this.getPessoas()
     );
-
-
   }
 
+  alterPessoa(pessoa2: Pessoa) {
+    this.pessoa = pessoa2;
+  }
+
+  updatePessoa() {
+    this.httpPessoas.updatePessoa(this.pessoa).subscribe(
+      data => data,
+      error => alert(error),
+      () => this.getPessoas()
+    );
+
+    this.pessoa = new Pessoa;
+  }
+
+  novoPessoa() {
+    this.pessoa = new Pessoa;
+  }
+
+  delPessoa(pessoa2: Pessoa) {
+    this.httpPessoas.delPessoa(pessoa2).subscribe(
+      data => data,
+      error => alert(error),
+      () => this.getPessoas()
+    );
+
+    this.pessoa = new Pessoa;
+
+  }
 
 }
